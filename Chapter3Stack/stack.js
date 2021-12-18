@@ -63,21 +63,51 @@ function divideBy2(decNumber) {
     const remStack = new Stack()
     let rem
     let binaryString = ''
-    console.log(decNumber)
     while(decNumber > 0) {
+        // 取餘數
         rem = Math.floor(decNumber % 2);
         remStack.push(rem);
+        // 因為是做二進位的轉換
+        // 所以要把傳進來的 decNumber 和 2 做整除
+        // 值到 decNumber 小於 0
         decNumber = Math.floor(decNumber / 2);
     }
-  
+
     while(!remStack.isEmpty()) {
-        console.log(remStack.print())
         binaryString += remStack.pop().toString()
     }
-
-  
 
     return binaryString
 }
 
 console.log( divideBy2(10) )
+
+function baseConverter(decNumber, base) {
+    const remStack = new Stack()
+    let rem
+    let baseString = ''
+    // 十進位轉二進位餘數是 0 或 1
+    // 十進位轉八進位於數 0 到  7
+    // 十進位轉十六進位於數 0 到 9 加上 ABCDEF 對應 10 11 12 13 14 15
+    let digits = '0123456789ABCDEF'
+    while(decNumber > 0) {
+        // 取餘數
+        rem = Math.floor(decNumber % base);
+        remStack.push(rem);
+        // 做進位的轉換
+        // 所以要把傳進來的 decNumber 和 base 做整除
+        // 直到 decNumber 小於 0
+        decNumber = Math.floor(decNumber / base);
+    }
+
+    while(!remStack.isEmpty()) {
+        baseString += digits[remStack.pop()]
+    }
+
+    return baseString
+}
+
+console.log( baseConverter(1000, 16) )
+
+let a = '0123456789ABCDEF'
+console.log(a[10])
