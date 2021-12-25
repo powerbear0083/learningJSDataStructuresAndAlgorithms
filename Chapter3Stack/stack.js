@@ -6,6 +6,7 @@ function Stack() {
     }
 
     this.pop = function(element) {
+        // 方法會移除並回傳陣列的最後一個元素。此方法會改變陣列的長度。
         return items.pop(element)
     }
 
